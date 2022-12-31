@@ -1,6 +1,8 @@
 package Demoproject;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.jms.JMSException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +18,15 @@ public class VeiculoController {
 	VeiculoRepository repository;
 
 	@GetMapping("/veiculos")
-	public ModelAndView listar() {
-        List<Veiculo> lista = repository.findAll();
-        ModelAndView modelAndView = new ModelAndView("contatos.html");
-        modelAndView.addObject("contatos", lista);
-        return modelAndView;
-    }
+	public ModelAndView getAllVeiculos() {
+		ModelAndView modelAndView = new ModelAndView("veiculos.html");
+			List<Veiculo> lista = repository.findAll();
+	        modelAndView.addObject("veiculos", lista);
+		return modelAndView;
+	}
 
-	@PostMapping("/veiculos/salvar")
-	public ModelAndView saveVeiculo(Veiculo veiculo) {
+	@PostMapping("/postveiculo")
+	public Veiculo saveVeiculo(@RequestBody Veiculo veiculo) {
 		ProducerFila pf = new ProducerFila();
 		try {
 			pf.envia("FILA = ",veiculo);
@@ -33,7 +35,6 @@ public class VeiculoController {
 		catch (JMSException e) {
 			System.out.println(e);
 		}
-		ModelAndView modelAndView = new ModelAndView("postVeiculo.html");
-		return modelAndView;
+		return veiculo;
 	}
 }
