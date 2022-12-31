@@ -3,6 +3,7 @@ package Demoproject;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -11,6 +12,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("Veiculo")
 public class Veiculo {
 	@Id
+	@GeneratedValue
+	Long id;
 	String nomeCliente;
     String marcaModeloVeiculo;
     int  anoModelo;
@@ -21,6 +24,18 @@ public class Veiculo {
 		super();
 	}
 
+	public Veiculo(Long id, String nomeCliente, String marcaModeloVeiculo, int anoModelo, double valorVenda,
+			Date dataPublicacao) {
+		super();
+		
+		this.id = id;
+		this.nomeCliente = nomeCliente;
+		this.marcaModeloVeiculo = marcaModeloVeiculo;
+		this.anoModelo = anoModelo;
+		this.valorVenda = valorVenda;
+		this.dataPublicacao = dataPublicacao;
+	}
+	
 	public Veiculo(String nomeCliente, String marcaModeloVeiculo, int anoModelo, double valorVenda,
 			Date dataPublicacao) {
 		super();
@@ -32,6 +47,15 @@ public class Veiculo {
 		this.dataPublicacao = dataPublicacao;
 	}
 
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNomeCliente() {
 		return nomeCliente;
 	}

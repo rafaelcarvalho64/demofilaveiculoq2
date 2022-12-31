@@ -32,30 +32,26 @@ public class ProducerFila {
         // instancia um XStream
         XStream xstream = new XStream(new StaxDriver());
 
-        // cria um objeto de mensagem "Pessoa"
-        Veiculo mp = new Veiculo("2Joana", "Fiat - Palio", 2015, 34000, (java.util.Date) new Date(System.currentTimeMillis())); 
         // Producer side:
-        if (veiculo != null) {
+        try {
         	message = session.createTextMessage(xstream.toXML(veiculo));
-    	}
-        else {
-        	message = session.createTextMessage(xstream.toXML(mp));	
-    	}
-        producer.send(message);
-
-        connection.close();
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("Mensagem enviada!");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        System.out.println("--------------------------------------------");
-        
+	        producer.send(message);
+	        connection.close();
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("Mensagem enviada!");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+	        System.out.println("--------------------------------------------");
+        }
+        catch (Exception e) {
+        	System.out.println(e);
+        }
     }
     public static void main(String[] args) throws JMSException {
     	String msg = "";

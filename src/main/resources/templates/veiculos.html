@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Listagem de contatos utilizando o Spring Boot</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <style>
+		</style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Classificados Veículos</h1>
+            <hr/>	
+            <h4>Buscar Veículo</h4>
+            <div id="divBusca">
+            	<form id="contatos" action="/veiculos" method="get">
+					<input id="nome" name="nome" type="text"/>
+				  	<button type="submit">Buscar</button>
+			  	</form>
+			</div>
+            <table class="table table-borderless">
+            <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Marca/Modelo</th>
+                        <th>Ano</th>
+                        <th>Preço</th>
+                        <th>Publicação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <hr/>
+                    <tr th:each="contato: ${veiculos}">  
+                        <td style="margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px;" th:text="${veiculo.id}"></td>
+                        <td style="margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px;" th:text="${veiculo.nomeCliente}"></td>
+						<td style="margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px;" th:text="${veiculo.marcaModeloVeiculo}"></td>
+                        <td style="margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px;" th:text="${veiculo.anoModelo}"></td>
+                        <td style="margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px;" th:text="${veiculo.valorVenda}"></td>
+                        <td style="margin-left: 0px; padding-left: 0px; margin-right: 0px; padding-right: 0px;" th:text="${veiculo.dataPublicacao}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr/>
+        </div>
+    </body>
+</html>
